@@ -4,14 +4,23 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
 
-        <h2>id : ${task_description.id} のタスク詳細ページ</h2>
+        <c:choose>
+            <c:when test="${task_description != null}">
 
-        <p>メッセージ：<c:out value="${task_description.content}" /></p>
-        <p>作成日時：<fmt:formatDate value="${task_description.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
-        <p>更新日時：<fmt:formatDate value="${task_description.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+                <h2>id : ${task_description.id} のタスク詳細ページ</h2>
 
-        <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
-        <p><a href="${pageContext.request.contextPath}/edit?id=${task_description.id}">このメッセージを編集する</a></p>
+                <p>メッセージ：<c:out value="${task_description.content}" /></p>
+                <p>作成日時：<fmt:formatDate value="${task_description.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+                <p>更新日時：<fmt:formatDate value="${task_description.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+
+                <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+                <p><a href="${pageContext.request.contextPath}/edit?id=${task_description.id}">このメッセージを編集する</a></p>
+
+            </c:when>
+            <c:otherwise>
+                <h2>お探しのデータは見つかりませんでした。</h2>
+            </c:otherwise>
+        </c:choose>
 
     </c:param>
 </c:import>
